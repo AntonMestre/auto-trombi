@@ -1,0 +1,29 @@
+Projet Front:
+
+Le but d'un trombi: 
+- Avoir des informations sur une personne à partir de sa photo
+- Avoir des informations sur une personne à partir de son nom
+
+Auto-trombi pour les apprentis qui permet:
+- à un apprenti de rentrer ses informations pour générer un trombinoscope (promo, photo, logo de l'entreprise, nom, etc) 
+- et l'affichage du trombi de la promo
+- qui permet la saisie des informations individuelles
+
+Choisissez une des méthodes vu dans le module pour développer 
+- autant que possible
+	- concentrer les fonctionnalités sur un seul espace (pas de navigation inter-écrans pour l'utilisateur)
+	- animer vos transitions pour éviter que les éléments qui appairaissent et disparaissent
+
+Le projet est évaluer à partir de :
+-l'originalité
+-la qualité de l'UX (simplicité des interactions vs simplicité à coder)
+-l'ergonomie : la lisibilité et l'utilisabilité
+-l'utilisation des transformations CSS (optionnel)
+-la qualité du code (revue par votre encadrant du module utilisé)
+
+Trier par ordre alphabétique (Information pour l'utilisateur): Vue des trombine: avec l'infos de la lettre (dessous un espece de trait avec la lettre)
+Carte: Nom prenom + Photo + Bouton voir detail
+sur la droite glissage d'un formulaire
+
+Trier par entreprise (AZ etp): (même chose mais que ETP)
+Rechercher

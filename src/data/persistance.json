@@ -1,0 +1,5 @@
+{
+ "students":[
+    {"id": 1, "firstname":"Raj", "lastname":"Maj", "birthdate": "2014-03-12T13:37:27+00:00", "promotion": 2024, "company":"la Poste", "profilPic":"/src/data/img/profil/Raj-Maj.png" }
+ ]
+}
