@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import type { Student } from '@/types/Student'
-defineProps({
+import type { Student } from '@/types/student'
+import { getImageUrl } from '@/utils/image'
+
+defineProps<{
     student: Student
-})
+}>()
+
 </script>
 <template>
-    <div class="card card-compact w-96 bg-base-100 shadow-xl">
-    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-    <div class="card-body">
-        <h2 class="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div class="card-actions justify-end">
-        <button class="btn btn-primary">Buy Now</button>
-        </div>
+    <div class="">
+    <figure><img class="rounded-lg" :src=getImageUrl(student.profilPic)  alt="profil-pic" /></figure>
+    <div class="">
+        <div class="">{{ student.lastName }}  {{ student.firstName }}</div>
     </div>
     </div>
 </template>

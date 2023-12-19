@@ -1,8 +1,8 @@
 export interface Student {
     id: number,
-    firstname: string,
-    lastname: string,
-    birthdate: Date,
+    firstName: string,
+    lastName: string,
+    birthDate: string,
     promotion: number,
     company: string,
     profilPic: string
