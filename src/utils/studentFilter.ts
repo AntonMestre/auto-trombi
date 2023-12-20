@@ -1,6 +1,6 @@
 import type { Student } from "../types/student";
 
-export const getStudentOrderedListByLastName = (students: Student[]) => {
+export const getStudentOrderedListByLastName = (students: Student[], filterLetters: String[]) => {
     // create an array for each letter of the alphabet for the lastname
     const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     const studentsByLastName: Student[][] = alphabet.map(() => []); 
@@ -11,5 +11,9 @@ export const getStudentOrderedListByLastName = (students: Student[]) => {
         studentsByLastName[index].push(student);
     });
     // return the array of arrays
+
+    // remove from the array not corresponding to the letters
+    console.log(filterLetters)
+
     return studentsByLastName;
 }
