@@ -6,6 +6,7 @@ import type { Student } from '@/types/student'
 import { ref } from 'vue'
 import UtilityInterface from '@/components/UtilityInterface.vue'
 import AddStudent from '@/components/AddStudent.vue'
+import PromotionChoice from '@/components/PromotionChoice.vue'
 
 const students : Student[] = data.students
 const show = ref(false)
@@ -19,6 +20,7 @@ const showStudentInterface = () => {
    <nav-bar @add-trombi="showStudentInterface"/>
   </header>
   <body class="max-h-screen">
+    <promotion-choice/>
     <div class="flex justify-center">
       <div class="flex flex-row w-11/12">
         <student-interface :students="students" />
