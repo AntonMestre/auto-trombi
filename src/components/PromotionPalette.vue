@@ -8,16 +8,15 @@ const props = defineProps<{
     students: Student[]
 }>()
 
-const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
-alphabet.map((letter, index) => {
-    alphabet[index] = letter.toUpperCase()
-})
+// ABCDEFGHIJKLMNOPQRSTUVWXYZ to array
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
 
+//declare filterLetters as a ref of the alphabet
 const filterLetters = ref([] as String[])
 
 const studentsOrdered = computed(() => getStudentOrderedListByLastName(props.students, filterLetters.value))
 
-const letterClicked = (letter: String) => {
+const letterClicked = (letter: string) => {
     if (filterLetters.value.includes(letter)) {
         filterLetters.value = filterLetters.value.filter((item) => item !== letter)
     } else {
