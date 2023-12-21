@@ -1,0 +1,40 @@
+<script setup lang="ts">
+import type { Student } from '@/types/student'
+import StudentCard from './StudentCard.vue';
+
+defineProps<{
+    students: Student[][]
+}>()
+
+</script>
+<template>
+    <div class="flex flex-wrap">
+        <template v-for="(studentsLetter, index) in students" v-bind:key="index">
+            <template v-for="(student, indexStudent) in studentsLetter" v-bind:key="indexStudent">
+                <div class="mb-5 transition-opacity" :class="{ [`mr-2`]: indexStudent == studentsLetter.length-1}">
+                    <StudentCard class="mx-3" :student="student"/>
+                    <div v-if="indexStudent == 0 && indexStudent == studentsLetter.length-1">
+                        <div class="flex">
+                            <div class="leftRule"></div><div class="mx-2 font-bold">{{ student.lastName.charAt(0) }}</div><div class="rightRule"></div>
+                        </div>
+                    </div>
+                    <div v-else-if="indexStudent == 0">
+                        <div class="flex">
+                            <div class="leftRule"></div><div class="mx-2 font-bold">{{ student.lastName.charAt(0) }}</div><div class="righRuleForTheStart"></div>
+                        </div>
+                    </div>
+                    <div v-else-if="indexStudent == studentsLetter.length-1">
+                        <div class="flex">
+                            <div class="rightRule"></div>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="flex">
+                            <div class="middleRule"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template >
+    </div>
+</template>

@@ -9,18 +9,7 @@
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal px-1">
-                <li><a>Link</a></li>
-                <li>
-                    <details>
-                    <summary>
-                        Parent
-                    </summary>
-                    <ul class="p-2 bg-base-100 rounded-t-none">
-                        <li><a>Link 1</a></li>
-                        <li><a>Link 2</a></li>
-                    </ul>
-                    </details>
-                </li>
+                <div class="rounded-full bg-green-600 m-4 px-3 py-2 text-white font-bold cursor-pointer" @click="$emit('addTrombi')">Ajouter sa trombi</div>
                 </ul>
             </div>
         </div>
