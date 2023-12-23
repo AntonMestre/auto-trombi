@@ -32,9 +32,9 @@ const letterClicked = (letter: string) => {
 </script>
 <template>
   <body class="h-full">
-    <div class="grid grid-cols-8 gap-4 h-screen">
-      <div class="col-span-5 col-start-2 mt-5"><promotion-choice/></div>
-      <div class="col-span-2"><div class="rounded-full bg-green-600 m-4 px-3 py-2 text-white font-bold cursor-pointer" @click="showStudentInterface()">Ajouter sa trombi</div></div>
+    <div class="grid grid-cols-8 gap-4 h-screen pt-3">
+      <div class="col-span-5 col-start-2 mt-5 self-end mb-8"><promotion-choice/></div>
+      <div class="col-span-2 self-end mb-2"><div class="rounded-full bg-green-600 m-4 px-3 py-2 text-white font-bold cursor-pointer" @click="showStudentInterface()">Ajouter sa trombi</div></div>
       <div class="col-span-1 justify-self-end">
         <div class="flex justify-center">
           <div class="flex">
@@ -46,7 +46,7 @@ const letterClicked = (letter: string) => {
           </div>
         </div>
       </div>
-      <div :class="{ [`col-start-2 col-end-6`]: show}"  class="col-start-2 col-end-9 overflow-y-scroll">
+      <div :class="{ [`col-start-2 col-end-7`]: show, [`col-start-2 col-end-9`]: !show }"  class="overflow-y-scroll">
         <student-array class="" :students="studentsOrderedByLastName"/>
       </div>
       <div class="col-span-2">

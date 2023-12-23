@@ -12,7 +12,7 @@ defineProps<{
     <figure><img class="rounded-lg w-32 h-32" :src=getImageUrl(student.profilPic)  alt="profil-pic" /></figure>
     <div class="flex flex-col text-center">
         <div>{{ student.lastName }}  {{ student.firstName }}</div>
-        <div class="italic">{{ student.company }}</div>
+        <div class="italic text-zinc-400">{{ student.company }}</div>
     </div>
     </div>
 </template>

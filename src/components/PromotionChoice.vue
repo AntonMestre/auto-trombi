@@ -30,10 +30,11 @@ years.value.sort((a, b) => a - b)
         <div v-for="year in years" :key="year">
             <div class="flex flex-col w-full hover:cursor-pointer parent">
                 <div class="h2 w-2 pb-2">
-                    <div :class="{ [`text-green-600`]: yearSelected==year }" class="text-xs -rotate-45 text-zinc-400 firstchild">{{ year }}</div>
+                    <div :class="{ 'text-green-600': yearSelected==year }" class="text-xs -rotate-45 text-zinc-400 firstchild">{{ year }}</div>
+                    {{ console.log(year, yearSelected, (year==yearSelected)) }}
                 </div>
                 <div class="flex items-center">
-                    <div class="w-2 h-2 rounded-full bg-zinc-300 secondchild" :class="{ [`bg-green-600`]: yearSelected==year }"></div>
+                    <div class="w-2 h-2 rounded-full bg-zinc-300 secondchild" :class="{ 'bg-green-600': yearSelected==year }"></div>
                     <div class="timeLine"></div>
                 </div>
             </div>
