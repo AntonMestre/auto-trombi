@@ -6,20 +6,60 @@ import type { Student } from '@/types/student'
 const students : Student[] = data.students
 
 const years = ref<number[]>([])
+const yearSelected = ref(2024)
 
 students.forEach(student => {
     if (!years.value.includes(student.promotion)) {
         years.value.push(student.promotion)
     }
 })
+years.value.sort((a, b) => a - b)
 
 </script>
 <template>
-    <div>
-        <h1>Promotion Choice</h1>
-        <div class="flex flex-col h-7 w-full">
-            <div class="text-xs -rotate-45">2017 - Création IMT Atlantique</div>
-            <div class="w-2 h-2 rounded-full bg-zinc-300"></div>
+    <div class="flex">
+        <div class="flex flex-col">
+            <div class="h2 w-2 pb-2">
+                <div class="text-xs -rotate-45">2017</div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-2 h-2 rounded-full bg-black"></div>
+                <div class="timeLine"></div>
+            </div>
         </div>
+        <div v-for="year in years" :key="year">
+            <div class="flex flex-col w-full hover:cursor-pointer parent">
+                <div class="h2 w-2 pb-2">
+                    <div :class="{ [`text-green-600`]: yearSelected==year }" class="text-xs -rotate-45 text-zinc-400 firstchild">{{ year }}</div>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-2 h-2 rounded-full bg-zinc-300 secondchild" :class="{ [`bg-green-600`]: yearSelected==year }"></div>
+                    <div class="timeLine"></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <div class="h2 w-2 pb-2">
+                <div class="text-xs -rotate-45">2027</div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-2 h-2 rounded-full bg-black"></div>
+            </div>
+        </div>
+
     </div>
 </template>
+<style>
+.timeLine {
+    border-bottom: 2px rgb(212 212 216) solid;
+    width: 70px;
+}
+
+.parent:hover .firstchild {
+    color: black;
+}
+
+.parent:hover .secondchild {
+    background-color: black;
+}
+</style>

@@ -17,7 +17,7 @@ const submitForm = () => {
 
 </script>
 <template>
-    <form @submit="submitForm" class="flex flex-col mt-5">
+    <form @submit="submitForm" class="flex flex-col">
         <label for="firstName">First name:</label>
         <input type="text" class="inputForm" id="firstName" v-model="student.firstName">
 
@@ -53,8 +53,8 @@ form > label {
 }
 
 form > input {
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin-top: 4px;
+    margin-bottom: 5px;
     margin-left:5px;
     margin-right:5px;
     padding: 5px;
