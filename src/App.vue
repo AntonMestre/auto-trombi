@@ -8,14 +8,15 @@ import PromotionChoice from '@/components/PromotionChoice.vue'
 import { computed } from 'vue'
 import { getStudentOrderedListByLastName } from '@/utils/studentFilter'
 import StudentArray from '@/components/StudentArray.vue'
+import StudentInterface from '@/components/StudentInterface.vue'
 
-const yearSelected = ref(2024)
+const yearSelected = ref(2024 as Number)
 const students : Student[] = data.students
 const studentsOfSelectedYear = computed(() => students.filter((student) => student.promotion === yearSelected.value))
-const show = ref(false)
+const showAddStudentInterface = ref(false)
 
-const showStudentInterface = () => {
-  show.value = !show.value
+const changeAddStudentInterfaceStatus = () => {
+  showAddStudentInterface.value = !showAddStudentInterface.value
 }
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
@@ -29,12 +30,31 @@ const letterClicked = (letter: string) => {
         filterLetters.value.push(letter)
     }
 }
+
+const changePromotion = (year: Number) => {
+  yearSelected.value = year
+}
+
+const onFocusStudent = ref(false)
+const focusedStudent = ref({} as Student)
+
+const callBackOnFocusStudent = (student: Student) => {
+  focusedStudent.value = student
+  onFocusStudent.value = true
+}
+
+const closeUtility = () => {
+  onFocusStudent.value = false
+  showAddStudentInterface.value = false
+}
 </script>
 <template>
   <body class="h-full">
     <div class="grid grid-cols-8 gap-4 h-screen pt-3">
-      <div class="col-span-5 col-start-2 mt-5 self-end mb-8"><promotion-choice/></div>
-      <div class="col-span-2 self-end mb-2"><div class="rounded-full bg-green-600 m-4 px-3 py-2 text-white font-bold cursor-pointer" @click="showStudentInterface()">Ajouter sa trombi</div></div>
+      <div class="col-span-5 col-start-2 mt-5 self-end mb-8"><promotion-choice @changing-promotion="changePromotion"/></div>
+      <div class="col-span-2 self-end mb-4">
+       <button @click="changeAddStudentInterfaceStatus()" class="btn btn-neutral">Ajouter sa trombi</button>
+      </div>
       <div class="col-span-1 justify-self-end">
         <div class="flex justify-center">
           <div class="flex">
@@ -46,13 +66,21 @@ const letterClicked = (letter: string) => {
           </div>
         </div>
       </div>
-      <div :class="{ [`col-start-2 col-end-7`]: show, [`col-start-2 col-end-9`]: !show }"  class="overflow-y-scroll">
-        <student-array class="" :students="studentsOrderedByLastName"/>
+      <div :class="{ [`col-start-2 col-end-7`]: showAddStudentInterface || onFocusStudent, [`col-start-2 col-end-9`]: !showAddStudentInterface }"  class="overflow-y-scroll">
+        <student-array @focus-on-student-to-app="callBackOnFocusStudent" :students="studentsOrderedByLastName"/>
       </div>
-      <div class="col-span-2">
-        <div v-if="show">
+      <div v-if="showAddStudentInterface || onFocusStudent" class="col-span-2 flex flex-col">
+        <button class="btn btn-circle btn-outline btn-sm self-end mr-2" @click="closeUtility">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div v-if="showAddStudentInterface && !onFocusStudent">
           <utility-interface>
             <add-student />
+          </utility-interface>
+        </div>
+        <div v-if="onFocusStudent && !showAddStudentInterface">
+          <utility-interface>
+            <student-interface :student="focusedStudent"/>
           </utility-interface>
         </div>
       </div>

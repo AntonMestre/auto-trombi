@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import type { Student } from '@/types/student'
+import data from '@/data/persistance.json'
+const students : Student[] = data.students
 
 const student: Student = {
-    id: 0,
+    id: Math.ceil(Math.random()*1000000),
     firstName: '',
     lastName: '',
     birthDate: '',
-    promotion: 0,
+    promotion: 2024,
     company: '',
     profilPic: '',
 }
 
 const submitForm = () => {
-    // handle form submission
+    students.push(student)
 }
 
 </script>
