@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import data from '@/data/persistance.json'
+import { useStudents } from '@/utils/students'
 import type { Student } from '@/types/student'
 import { ref } from 'vue'
 import UtilityInterface from '@/components/UtilityInterface.vue'
@@ -10,8 +10,11 @@ import { getStudentOrderedListByLastName } from '@/utils/studentFilter'
 import StudentArray from '@/components/StudentArray.vue'
 import StudentInterface from '@/components/StudentInterface.vue'
 
+const studentsStore = useStudents();
+studentsStore.initializeStudents();
+const students = studentsStore.students;
+
 const yearSelected = ref(2024 as Number)
-const students : Student[] = data.students
 const studentsOfSelectedYear = computed(() => students.filter((student) => student.promotion === yearSelected.value))
 const showAddStudentInterface = ref(false)
 const onFocusStudent = ref(false)
@@ -52,15 +55,15 @@ const closeUtility = () => {
 <template>
   <body class="h-full">
     <div class="grid grid-cols-8 gap-4 h-screen">
-      <div class="col-span-5 col-start-2 mt-5 self-end mb-8"><promotion-choice @changing-promotion="changePromotion"/></div>
-      <div class="col-span-2 self-end mb-4">
+      <div class="col-span-6 col-start-2 mt-5 self-end mb-8"><promotion-choice @changing-promotion="changePromotion"/></div>
+      <div class="col-span-1 self-end mb-4">
        <button @click="changeAddStudentInterfaceStatus()" class="btn btn-neutral">Add Trombi</button>
       </div>
       <div class="col-span-1 justify-self-end">
         <div class="flex justify-center">
           <div class="flex">
               <div class="flex flex-col mr-10">
-                  <div class="text-center leading-tight hover:cursor-pointer hover:text-black text-slate-400" v-for="letter in alphabet" @click="letterClicked(letter)">
+                  <div class="text-center leading-tight hover:cursor-pointer hover:text-black text-slate-400" v-for="letter in alphabet" @click="letterClicked(letter)" :key="letter">
                       <span :class="{ [`text-black`]: filterLetters.includes(letter) }">{{ letter }}</span>
                   </div>
               </div>

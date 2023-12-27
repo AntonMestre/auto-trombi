@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Student } from '@/types/student'
-import data from '@/data/persistance.json'
-const students : Student[] = data.students
+import { ref } from 'vue'
+import { useStudents } from '@/utils/students'
 
-const student: Student = {
+const studentsStore = useStudents();
+const students = studentsStore.students;
+
+const student = ref<Student>({
     id: Math.ceil(Math.random()*1000000),
     firstName: '',
     lastName: '',
@@ -11,23 +14,35 @@ const student: Student = {
     promotion: 2024,
     company: '',
     profilPic: '',
-}
+})
 
 const submitForm = () => {
-    students.push(student)
+    
+    studentsStore.update(students);
 }
 
+const test = () => {
+    studentsStore.addStudent({
+        id: Math.ceil(Math.random()*1000000),
+        firstName: 'Jean',
+        lastName: 'Dupont',
+        birthDate: '1999-01-01',
+        promotion: 2024,
+        company: 'Google',
+        profilPic: '',
+    })
+}
 </script>
 <template>
-    <form @submit="submitForm" class="flex flex-col">
-        <label for="firstName">First name:</label>
+    <form class="flex flex-col">
+        <label @click="test" for="firstName">First name:</label>
         <input type="text" class="inputForm" id="firstName" v-model="student.firstName">
 
         <label for="lastName">Last name:</label>
         <input type="text" class="inputForm" id="lastName" v-model="student.lastName">
 
         <label for="birthDate">Birth date:</label>
-        <input type="number" class="inputForm" id="birthDate" v-model="student.birthDate">
+        <input type="date" class="inputForm" id="birthDate" v-model="student.birthDate">
 
         <label for="promotion">Promotion:</label>
         <input type="text" class="inputForm" id="promotion" v-model="student.promotion">
@@ -35,10 +50,10 @@ const submitForm = () => {
         <label for="company">Company:</label>
         <input type="text" class="inputForm" id="company" v-model="student.company">
 
-        <label for="profilPic">Profile Picture:</label>
-        <input type="file" class="inputForm" id="profilPic">
+        <!-- <label for="profilPic">Profile Picture:</label>
+        <input type="file" class="inputForm" id="profilPic"> -->
 
-        <button type="submit" class="rounded-full bg-green-600 m-4 px-3 py-2 text-white font-bold cursor-pointer">Submit</button>
+        <button @click="submitForm" type="submit" class="rounded-full bg-green-600 m-4 px-3 py-2 text-white font-bold cursor-pointer">Submit</button>
     </form>
 </template>
 <style scoped>

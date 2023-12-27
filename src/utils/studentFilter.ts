@@ -1,7 +1,6 @@
 import type { Student } from "../types/student";
 
 export const getStudentOrderedListByLastName = (students: Student[], filterLetters: String[]) => {
-    console.log("je passe ici")
     // create an array for each letter of the alphabet for the lastname
     const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     const studentsByLastName: Student[][] = alphabet.map(() => []); 
