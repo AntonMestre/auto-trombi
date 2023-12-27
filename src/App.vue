@@ -14,9 +14,12 @@ const yearSelected = ref(2024 as Number)
 const students : Student[] = data.students
 const studentsOfSelectedYear = computed(() => students.filter((student) => student.promotion === yearSelected.value))
 const showAddStudentInterface = ref(false)
+const onFocusStudent = ref(false)
+const focusedStudent = ref({} as Student)
 
 const changeAddStudentInterfaceStatus = () => {
   showAddStudentInterface.value = !showAddStudentInterface.value
+  onFocusStudent.value = false
 }
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
@@ -35,12 +38,10 @@ const changePromotion = (year: Number) => {
   yearSelected.value = year
 }
 
-const onFocusStudent = ref(false)
-const focusedStudent = ref({} as Student)
-
 const callBackOnFocusStudent = (student: Student) => {
   focusedStudent.value = student
   onFocusStudent.value = true
+  showAddStudentInterface.value = false
 }
 
 const closeUtility = () => {
@@ -50,10 +51,10 @@ const closeUtility = () => {
 </script>
 <template>
   <body class="h-full">
-    <div class="grid grid-cols-8 gap-4 h-screen pt-3">
+    <div class="grid grid-cols-8 gap-4 h-screen">
       <div class="col-span-5 col-start-2 mt-5 self-end mb-8"><promotion-choice @changing-promotion="changePromotion"/></div>
       <div class="col-span-2 self-end mb-4">
-       <button @click="changeAddStudentInterfaceStatus()" class="btn btn-neutral">Ajouter sa trombi</button>
+       <button @click="changeAddStudentInterfaceStatus()" class="btn btn-neutral">Add Trombi</button>
       </div>
       <div class="col-span-1 justify-self-end">
         <div class="flex justify-center">
@@ -66,7 +67,7 @@ const closeUtility = () => {
           </div>
         </div>
       </div>
-      <div :class="{ [`col-start-2 col-end-7`]: showAddStudentInterface || onFocusStudent, [`col-start-2 col-end-9`]: !showAddStudentInterface }"  class="overflow-y-scroll">
+      <div :class="{ [`col-start-2 col-end-7`]: showAddStudentInterface || onFocusStudent, [`col-start-2 col-end-9`]: !(showAddStudentInterface || onFocusStudent) }"  class="overflow-y-scroll">
         <student-array @focus-on-student-to-app="callBackOnFocusStudent" :students="studentsOrderedByLastName"/>
       </div>
       <div v-if="showAddStudentInterface || onFocusStudent" class="col-span-2 flex flex-col">

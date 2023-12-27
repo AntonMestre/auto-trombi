@@ -32,9 +32,9 @@ const changeYear = (year: number) => {
             </div>
         </div>
         <div v-for="year in years" :key="year">
-            <div class="flex flex-col w-full hover:cursor-pointer parent">
+            <div @click="$emit('changingPromotion', year); changeYear(year)" class="flex flex-col w-full hover:cursor-pointer parent">
                 <div class="h2 w-2 pb-2">
-                    <div :class="{ 'text-green-600': yearSelected==year, 'text-zinc-400': yearSelected!==year }" class="text-xs -rotate-45 firstchild" @click="$emit('changingPromotion', year); changeYear(year)" >{{ year }}</div>
+                    <div :class="{ 'text-green-600': yearSelected==year, 'text-zinc-400': yearSelected!==year }" class="text-xs -rotate-45 firstchild" >{{ year }}</div>
                 </div>
                 <div class="flex items-center">
                     <div class="w-2 h-2 rounded-full  secondchild" :class="{ 'bg-green-600': yearSelected==year, 'bg-zinc-400': yearSelected!==year }"></div>
