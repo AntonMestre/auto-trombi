@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import data from '@/data/persistance.json'
 import type { Student } from '@/types/student'
 
-const students : Student[] = data.students
+const props = defineProps<{
+    students: Student[]
+}>()
 
 const years = ref<number[]>([])
 const yearSelected = ref(2024)
 
-students.forEach(student => {
+props.students.forEach(student => {
     if (!years.value.includes(student.promotion)) {
         years.value.push(student.promotion)
     }
