@@ -12,6 +12,8 @@ export const useStudents = defineStore({
       const storedStudents = localStorage.getItem('students');
       if (!storedStudents) {
         this.students = data.students as Student[];
+      }else {
+        this.students = JSON.parse(storedStudents as string);
       }
     },
     addStudent(newStudent: Student) {

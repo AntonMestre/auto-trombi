@@ -4,7 +4,6 @@ import { ref } from 'vue'
 import { useStudents } from '@/utils/students'
 
 const studentsStore = useStudents();
-const students = studentsStore.students;
 
 const student = ref<Student>({
     id: Math.ceil(Math.random()*1000000),
@@ -17,25 +16,12 @@ const student = ref<Student>({
 })
 
 const submitForm = () => {
-    
-    studentsStore.update(students);
-}
-
-const test = () => {
-    studentsStore.addStudent({
-        id: Math.ceil(Math.random()*1000000),
-        firstName: 'Jean',
-        lastName: 'Dupont',
-        birthDate: '1999-01-01',
-        promotion: 2024,
-        company: 'Google',
-        profilPic: '',
-    })
+    studentsStore.addStudent(student.value)
 }
 </script>
 <template>
     <form class="flex flex-col">
-        <label @click="test" for="firstName">First name:</label>
+        <label for="firstName">First name:</label>
         <input type="text" class="inputForm" id="firstName" v-model="student.firstName">
 
         <label for="lastName">Last name:</label>
@@ -50,8 +36,8 @@ const test = () => {
         <label for="company">Company:</label>
         <input type="text" class="inputForm" id="company" v-model="student.company">
 
-        <!-- <label for="profilPic">Profile Picture:</label>
-        <input type="file" class="inputForm" id="profilPic"> -->
+        <label for="profilPic">Profile Picture (Can't work because a FrontEnd application can't save image):</label>
+        <input type="file" class="inputForm" id="profilPic">
 
         <button @click="submitForm" type="submit" class="rounded-full bg-green-600 m-4 px-3 py-2 text-white font-bold cursor-pointer">Submit</button>
     </form>
