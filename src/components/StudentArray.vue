@@ -45,16 +45,16 @@ const callback = (student: Student) => {
 </template>
 <style scoped>
 .myfadein {
-  opacity: 0; /* Initially hide the div */
-  animation: fadeIn 2s ease forwards; /* Apply the fadeIn animation */
+  opacity: 0;
+  animation: fadeIn 2s ease forwards
 }
 
 @keyframes fadeIn {
   from {
-    opacity: 0; /* Start from completely transparent */
+    opacity: 0;
   }
   to {
-    opacity: 1; /* Fade to fully visible */
+    opacity: 1;
   }
 }
 </style>

@@ -77,7 +77,7 @@ const closeUtility = () => {
         <button class="btn btn-circle btn-outline btn-sm self-end mr-2" @click="closeUtility">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
-        <div v-if="showAddStudentInterface && !onFocusStudent" class="animated-box" :class="{ 'visible': showAddStudentInterface && !onFocusStudent }">
+        <div v-if="showAddStudentInterface && !onFocusStudent">
           <utility-interface>
               <add-student />
           </utility-interface>
@@ -91,15 +91,3 @@ const closeUtility = () => {
     </div>
   </body>
 </template>
-<style>
-.animated-box {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-.animated-box.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-</style>
